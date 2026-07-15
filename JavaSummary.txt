@@ -60,4 +60,98 @@ sout + TAB == System.out.println()
         }
 		
 ---------------------------------------------- 	
-02_
+02_Java ООП
+
+org.example -- package папка (namespace у C#)
+
+	public class Animal {
+		private String name;	--змінні
+		private int age;
+	
+ПКМ generate Getter Setter
+	
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public Animal(){
+		}
+		public Animal(String name, int age){
+			this.name = name
+			this.age = age
+		}
+		
+		@Override --перевизнач у базовом класі
+		public String toString() {
+			return "Animal{" +
+					"name='" + name + '\'' +
+					", age=" + age +
+					'}';
+		}
+		
+		
+	}
+
+https://mvnrepository.com/
+	maven = NuGet Package
+
+Шукаємо і копіюємо команду
+	і у pom.xml додаємо
+	
+	<dependencies>
+        <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.46</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+і жмемо кнопку maven syncChanges
+
+	lombok - пакет для { get; set }
+
+	 і File > Settings > Plugins > Lombok
+
+	import lombok.Data;
+	
+	@Data			 //на всіх полях getter setter
+	@AllArgsConstructor		//авто ctor з всіма парам
+	@NoArgsConstructor		//ctor без парам
+	
+	public class Animal {
+		private String name;
+		..
+
+				Наслідування
+public class Cat extends Animal{
+	private boolean indoorOnly;
+    
+    public Cat(){
+        super("Кіт",2);	--ctor батькіский == base()
+        this.indoorOnly = false;
+    }
+	
+	@Override
+    public String toString(){
+        String str = super.toString();
+        return str;
+    }
+}
+
+Аналог List у C#
+	import java.util.ArrayList;
+
+	ArrayList<Animal> list = new ArrayList<>();
+        list.add(myDog);
+        list.add(myCat);
+
+---------------------------------------------- 	
+03_
+
+
+
