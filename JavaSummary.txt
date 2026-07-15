@@ -9,17 +9,55 @@
                                         
 ---------------------------------------------- 	
 01_Intro to Java Змінні, цикли, масиви                                    
-                                        
+
+	Схожа на C# на 80%              
+			  
 	для роботи Inteliji IDEA									
 https://www.jetbrains.com/idea/download/
 
 потрібно скачти Java для React найкраще 17
 
-java -version
+java -version 
 
+створ проект на Java	
+		Build System Maven
+
+sout + TAB == System.out.println()
+
+
+Типи данних майже ті самі
+        int a = 25;
+        boolean b = true;
+        char ch = 'd';
+        String str = "string";
+
+        System.out.println(ch+" "+str);
+
+
+Для cin потрібно
+	import java.util.Scanner;
 	
+	Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+		
+        System.out.println("Hello " + name);
 
 
+	Scanner scanner = new Scanner(System.in);
+	
+		 		парсимо до int
+        int size = scanner.nextInt();
+		int[] arr = new int[size];
 
-
-
+        Random rand = new Random();
+        int min =18;   int max = 80;
+        for (int i=0; i<size; i++)        {
+            arr[i] = rand.nextInt(max-min+1)+min;
+        }
+        for (int item: arr){
+            System.out.printf("%d\t", item);
+        }
+		
+---------------------------------------------- 	
+02_
