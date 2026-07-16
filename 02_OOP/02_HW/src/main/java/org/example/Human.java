@@ -10,8 +10,8 @@ public class Human {
     private String name;
 
     public Human() {
-        this.age = 0;
-        this.name = "Name";
+        this.age = 20;
+        this.name = "Ivan";
     }
 
     @Override

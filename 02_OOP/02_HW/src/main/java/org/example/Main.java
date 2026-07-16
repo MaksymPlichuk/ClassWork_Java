@@ -14,5 +14,13 @@ public class Main {
 
         Fraction fr = new Fraction();
         System.out.println(fr);
+
+        Book book = new Book();
+        System.out.println(book);
+        //Book book2 = new Book("Test","Doyle",2002,"Hramota","Fiction",200);
+        //System.out.println(book2);
+
+        Car car = new Car();
+        System.out.println(car);
     }
 }

@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Fraction {
-    private double numerator;
-    private double denominator;
+    private int numerator;
+    private int denominator;
 
     public Fraction() {
         numerator = 1;
@@ -16,6 +16,6 @@ public class Fraction {
 
     @Override
     public String toString() {
-        return "%.2f/%.2f".formatted(numerator, denominator);
+        return "%d/%d".formatted(numerator, denominator);
     }
 }

@@ -11,18 +11,18 @@ public class Country {
     private int population;
     private String name;
     private double area;
-    private String indepenceDay;
+    private String independenceDay;
 
     public Country(){
         this.population=500000;
         this.name="Uganda";
         this.area=40004.59;
-        this.indepenceDay="1950-07-17";
+        this.independenceDay="1950-07-17";
     }
 
     @Override
     public String toString(){
-        return "Name: %s Population: %d Area: %.2f Independence: %s".formatted(name,population,area,indepenceDay);
+        return "Name: %s Population: %d Area: %.2f Independence: %s".formatted(name,population,area,independenceDay);
     }
 
 }
