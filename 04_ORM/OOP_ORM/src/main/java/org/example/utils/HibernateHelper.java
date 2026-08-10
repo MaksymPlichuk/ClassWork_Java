@@ -2,7 +2,7 @@ package org.example.utils;
 
 import lombok.Getter;
 //import org.example.entities.CategoryEntity;
-import org.example.entities.CategoryEntity;
+import org.example.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -22,6 +22,12 @@ public class HibernateHelper {
         try {
             sessionFactory = new MetadataSources(registry)
                     .addAnnotatedClass(CategoryEntity.class) //вказали, що буде таблиця в БД
+                    .addAnnotatedClass(ProductEntity.class)
+                    .addAnnotatedClass(ProductPhotoEntity.class)
+                    .addAnnotatedClass(UserEntity.class)
+                    .addAnnotatedClass(ReviewEntity.class)
+                    .addAnnotatedClass(OrderEntity.class)
+                    .addAnnotatedClass(OrderItemEntity.class)
                     .buildMetadata()
                     .buildSessionFactory();
         } catch (Exception ex) {
