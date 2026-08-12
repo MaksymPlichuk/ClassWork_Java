@@ -286,5 +286,120 @@ Main
 	}
 	
 ---------------------------------------------- 	
-04_
+04_OOP ORM
+
+
+налаштування підключення до БД у
+	src/main/resources/hibernate.properties
+
+створ БД https://neon.com/ https://temp-mail.org/
+
+ставимо depencency pom.xml
+
+папка utils
+utils/HibernateHelper --клас підлкюч до БД
+
+
+
+створ папку entities --у якій будуть класи
+
+#	
+	@Data
+	@Entity
+	@Table(name = "categories")
+	public class CategoryEntity {
+	
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "id")
+		private Long id;
+	
+		@Column(name = "name", nullable = false, length = 100)
+		private String name;
+	
+		@Column(name = "description", length = 500)
+		private String description;
+	
+	//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+	//    private List<ProductEntity> products;
+	}
+
+	@Data
+	@Entity
+	@Table(name = "product_photos")
+	public class ProductPhotoEntity {
+	
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "id")
+		private Long id;
+	
+		@Column(name = "url", nullable = false, length = 500)
+		private String url;
+	
+		@Column(name = "is_main")
+		private Boolean isMain = false;
+	
+		@ManyToOne(fetch = FetchType.LAZY)              //include
+		@JoinColumn(name = "product_id", nullable = false) //назва у таблиці при посиланні
+		private ProductEntity product;
+	}
+#
+
+---------------------------------------------- 	
+05_JavaCollection
+
+для заповнення фейкових данних скачуємо бібліотеку
+	datafaker
+
+	private static void seedCategories(Session session) {
+			Random random = new Random(12345);
+			Faker faker = new Faker(random);
+	
+			List<String> categoryNames = List.of(
+					"Електроніка", "Одяг та взуття", "Дім і сад",
+					"Спорт та відпочинок", "Краса та здоров'я",
+					"Книги", "Іграшки", "Автотовари", "Продукти харчування"
+			);
+
+//для перевірки якщо помилка нічого не запишеться	
+			Transaction transaction = session.beginTransaction();
+	
+			for (String name : categoryNames) {
+				Long count = session.createQuery(
+								"select count(c) from CategoryEntity c where c.name = :name", Long.class)
+						.setParameter("name", name)
+						.uniqueResult();
+	
+				if (count == 0) {
+					CategoryEntity category = new CategoryEntity();
+					category.setName(name);
+					category.setDescription(faker.lorem().sentence(10));
+					session.persist(category); //add
+				}
+			}
+	
+			transaction.commit();
+			System.out.println("Категорії перевірені/додані");
+		}
+		
+для зображень
+	private static final Path IMAGES_DIR = Paths.Get("images","products");
+		
+		
+    private static void downloadImage(String imageUrl, Path destination) 
+	{
+        try (InputStream in = URI.create(imageUrl).toURL().openStream()) 
+		{
+            Files.copy(in, destination, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Скачано: " + destination.getFileName());
+        } catch (IOException e) {
+            System.out.println("Не вдалося скачати " + imageUrl + ": " + e.getMessage());
+        }
+    }		
+		
+		
+--
+
+
 
