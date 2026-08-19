@@ -398,7 +398,20 @@ utils/HibernateHelper --клас підлкюч до БД
         }
     }		
 		
-		
+StreamAPI -- аналог LINQ
+
+private Map<String, List<String>> dictionary = new HashMap<>();
+як Dictionary<String, List<String>> у C#
+
+
+//entry set (перетвор на KeyValuePair) stream -доступ до LINQ
+        wordPopularity.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).limit(10)
+                .forEach(e -> System.out.println(e.getKey() + " was read: " + e.getValue() + " times"));	
+
+//якщо ключа немає створ новий список і приписує до нього ключ
+        dictionary.computeIfAbsent(key, k -> new ArrayList<>()).add(scanner.next().toLowerCase());
+
 --
 
 
