@@ -412,7 +412,50 @@ private Map<String, List<String>> dictionary = new HashMap<>();
 //якщо ключа немає створ новий список і приписує до нього ключ
         dictionary.computeIfAbsent(key, k -> new ArrayList<>()).add(scanner.next().toLowerCase());
 
---
+---------------------------------------------- 	
+06_Lambda
+
+	//приймає 1 повертає bool
+Predicate<Integer> isLeapYear = year -> (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+        //2 приймає 		1 повертає
+BiFunction<LocalDate, LocalDate, Long> daysBetween = (d1, d2) -> ChronoUnit.DAYS.between(d1, d2);
+
+		//приймає   повертає
+Function<LocalDate, DayOfWeek> dayOfTheWeek = d -> d.getDayOfWeek();
+		
+
+//Шаблонна
+
+	interface TemplateFunction<T extends Comparable<T>> {
+				T apply(T[] arr);
+			}
+
+	TemplateFunction<Integer> findMax = arr -> {
+            Integer max = arr[0];
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i].compareTo(max) > 0) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        };
 
 
+//для 3 і більше арг робимо свій інтерфейс
+
+	 interface ThreeArgs<A, B, C, R> {		//R -- тип повернення
+            R apply(A arr, B n1, C n2);
+        }
+
+        ThreeArgs<int[], Integer, Integer, Boolean> isNumInRange = (a, n1, n2) -> {
+            Integer res = Arrays.stream(a).sum();
+            if (res <= n2 && res >= n1) {
+                return true;
+            }
+            return false;
+        };
+
+---------------------------------------------- 	
+07_
 
