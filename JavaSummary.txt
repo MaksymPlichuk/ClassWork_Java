@@ -457,5 +457,58 @@ Function<LocalDate, DayOfWeek> dayOfTheWeek = d -> d.getDayOfWeek();
         };
 
 ---------------------------------------------- 	
-07_
+07_Files
 
+зчитування
+	 Path filePath = Paths.get(scanner.nextLine());
+
+	 try {
+            List<String> listText = Files.readAllLines(filePath);
+
+Створення
+
+	Files.createFile(path4);
+
+Запис у декілька ліній
+
+		String strArr = Arrays.toString(arr);
+            String strEven = String.valueOf(evenNums);
+            String strUneven = String.valueOf(unevenNums);
+            String strReversed = Arrays.toString(reversedArr);
+
+
+            Files.write(path4, List.of(strArr,strEven,strUneven,strReversed) );
+	
+	
+JSON серіалізація - gson
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>2.14.0</version>
+					<scope>compile</scope>
+				</dependency>
+
+ Json запис
+	private void saveToFile(){
+
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String jsonStr = gson.toJson(db);
+	
+			try {
+				Files.writeString(path,jsonStr);
+			}
+
+ Json read
+	private void loadFormFile(){
+
+        try {
+
+            String jsonString = Files.readString(path);
+
+            Gson gson = new Gson();
+			
+//перетворюємо на наш тип			
+            Type type = new TypeToken<Map<String,Worker>>(){}.getType();
+            db = gson.fromJson(jsonString, type);
+
+        }
